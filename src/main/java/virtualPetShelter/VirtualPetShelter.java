@@ -7,30 +7,30 @@ public class VirtualPetShelter
 {
 	Map<String, Pets> giraffes = new HashMap<>();
 
-	public void adopt(Pets adoptees) 
-	{
-		giraffes.put(adoptees.getGiraffeName(), adoptees);
-		giraffes.put(adoptees.getGiraffePersonality(), adoptees);
-	}
 
-	public Pets findPet(String giraffe) 
+	public Pets findPet(String giraffeName) 
 	{
-		return giraffes.get(giraffe);
+		return giraffes.get(giraffeName);
 	}
 
 	public Collection<Pets> getAllPets() 
 	{
 		return giraffes.values();
 	}
+	
+	public void adoptPet(Pets giraffeName)
+	{
+		giraffes.remove(giraffeName.getGiraffeName(), giraffeName);
+	}
+	
+	public void feedPets(int giraffeName)
+	{
+		giraffes.get(giraffeName).feedPets();
+	}
 
 	public void returnPet(Pets giraffe) 
 	{
-		giraffes.remove(giraffe.getGiraffeName());
-	}
-
-	public void getHappiness(String entry) 
-	{
-		
+		giraffes.put(giraffe.getGiraffeName(), giraffe);
 	}
 
 	public void batheAll() 
@@ -54,10 +54,22 @@ public class VirtualPetShelter
 		for(Pets giraffes : giraffes.values())
 		{
 			System.out.println("Giraffe Name: " + giraffes.getGiraffeName() + 
-					" Personality & Stats: " + giraffes.getGiraffePersonality());
+					" Personality & Stats: " + giraffes.getPersonality());
+			giraffes.tick();
+		}
+	}
+	
+	public void tick()
+	{
+		for(Pets giraffes : giraffes.values())
+		{
+			giraffes.tick();
 		}
 	}
 
-
+	public void feedPet(String giraffeName) 
+	{
+		giraffes.get(giraffeName).feedPets();
+	}
 
 }

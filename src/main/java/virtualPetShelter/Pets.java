@@ -5,7 +5,7 @@ public class Pets
 {
 
 	private String giraffeName;
-	private String giraffePersonality;
+	private String personality;
 	private int happiness;
 	private int beauty;
 	private int health;
@@ -13,10 +13,10 @@ public class Pets
 	Random rand = new Random();
 
 
-	public Pets(String giraffeName, int happiness, int beauty, int health, String giraffePersonality) 
+	public Pets(String giraffeName, String personality, int happiness, int beauty, int health) 
 	{
 		this.giraffeName = giraffeName;
-		this.giraffePersonality = giraffePersonality;
+		this.personality = personality;
 		this.happiness = happiness;
 		this.beauty = beauty;
 		this.health = health;
@@ -27,9 +27,9 @@ public class Pets
 		return giraffeName;
 	}
 	
-	public String getGiraffePersonality()
+	public String getPersonality()
 	{
-		return giraffePersonality + happiness + beauty + health;
+		return personality + " " + happiness  + ", " + beauty + ", " + health + ".";
 	}
 
 	public int getHappiness() 
@@ -37,14 +37,30 @@ public class Pets
 		return happiness;
 	}
 	
-	public void feed(String food)
+	public void feedPets() 
 	{
+		if (happiness == 100) 
+		{
+			happiness += 0;
+		} 
+		
+		else if (happiness < 10)
+		{
 			happiness += 15;
+		}
 	}
 
 	public void batheAll() 
 	{
-		beauty += 20;
+		if(beauty == 100)
+		{
+			beauty += 0;
+		}
+		else if(beauty < 100)
+		{
+			beauty += 20;			
+		}
+		System.out.println("All of the giraffes are nice and clean!");
 	}
 
 	public int getBeauty() 
@@ -54,7 +70,14 @@ public class Pets
 
 	public void checkupAll() 
 	{
+		if(health == 100)
+		{
+			health += 0;
+		}
+		else if(health < 100)
+		{
 		health += 30;
+		}
 	}
 
 	public int getHealth() 
